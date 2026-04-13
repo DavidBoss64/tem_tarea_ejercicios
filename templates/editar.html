@@ -1,0 +1,25 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<h1>Editar Contacto</h1>
+
+<form class="form" action="{{url_for('editar', id_contacto=contacto.id)}}" method="POST">
+    <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" value="{{contacto.nombre}}">
+    </div>
+    <div class="mb-3">
+        <label for="correo" class="form-label">Correo Electronico</label>
+        <input type="text" class="form-control" id="correo" name="correo" value="{{contacto.correo}}">
+    </div>
+    <div class="mb-3">
+        <label for="celular" class="form-label">Celular</label>
+        <input type="number" class="form-control" id="celular" name="celular" value="{{contacto.celular}}">
+    </div>
+
+    <div class="mb-3">
+        <input type="submit" class="btn btn-primary" value="Editar Contacto">
+    </div>
+</form>
+
+{%endblock%}

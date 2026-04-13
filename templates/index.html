@@ -1,0 +1,55 @@
+
+
+{% extends 'base.html' %}
+
+{%block title%}TEM Ej1 Tienda{%endblock%}
+
+{%block content%}
+        <h1>Tienda</h1>
+
+        <!-- FORMULARIO PARA AGREGAR PRODUCTOS -->
+        <!--Estilos con Bootstrap-->
+        <form class="" action="/agregar" method="POST">
+
+            <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label">Producto</label>
+                <input type="text" class="form-control" id="nombre" name="nombre"
+                    placeholder="nombre del producto">
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Precio</label>
+                <input type="text" class="form-control" id="precio" name="precio"
+                    placeholder="precio del producto">
+            </div>
+
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Cantidad</label>
+                <input type="number" class="form-control" id="cantidad" name="cantidad"
+                    placeholder="cantidad del producto">
+            </div>
+
+            <div class="mb-3">
+                <input type="submit" class="btn btn-primary" value="Agregar al carrito">
+            </div>
+
+        </form>
+        <hr>
+        <h3 class="form-label">Detalle de compra</h3>
+        <table class="table">
+            <tr>
+                <th>Prducto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+            </tr>
+            {% for item in carrito %}
+            <tr>
+                <td>{{item.nombre}}</td>
+                <td>{{item.precio}}</td>
+                <td>{{item.cantidad}}</td>
+                <td>{{item.subtotal}}</td>
+            </tr>
+            {%endfor%}
+        </table>
+        <h3 class="form-label">Total a pagar: {{total}} Bs.</h3>
+{%endblock%}

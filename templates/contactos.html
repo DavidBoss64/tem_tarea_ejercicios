@@ -1,0 +1,56 @@
+{%extends 'base.html'%}
+
+{%block title%}TEM Ej2 Contactos{%endblock%}
+
+{%block content%}
+<h1>Gestion de Contactos</h1>
+<p>En esta sección puedes encontrar nuestros datos de contacto.</p>
+<form action="/crear" method="POST">
+    <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="ingresa tu nombre">
+    </div>
+    <div class="mb-3">
+        <label for="correo" class="form-label">Correo Electronico</label>
+        <input type="text" class="form-control" id="correo" name="correo" placeholder="ingresa tu correo electronico">
+    </div>
+
+    <div class="mb-3">
+        <label for="celular" class="form-label">Celular</label>
+        <input type="number" class="form-control" id="celular" name="celular" placeholder="ingresa tu numero de celular">
+    </div>
+
+    <div class="mb-3">
+        <input type="submit" class="btn btn-primary" value="Guardar Contacto">
+    </div>
+</form>
+<!-- Lista de contactos -->
+<h2 class="form-label">Lista de Contactos</h2>
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Celular</th>
+        <th>Acciones</th>
+    </tr>
+
+    {% for contacto in contactos %} 
+    <tr>
+        <td>{{contacto.id}}</td>
+        <td>{{contacto.nombre}}</td>
+        <td>{{contacto.correo}}</td>
+        <td>{{contacto.celular}}</td>
+        <td>
+            <a class="btn btn-secondary" href="{{url_for('editar', id_contacto=contacto.id)}}">Editar</a>
+            <a class="btn btn-warning" href="{{url_for('eliminar', id_contacto=contacto.id)}}">Eliminar</a>
+        </td>
+    </tr>
+    {%else%}
+    <tr>
+        <td colspan="5">No hay contactos guardados aún</td>
+    </tr>
+    {%endfor%}
+</table>
+{%endblock%}
